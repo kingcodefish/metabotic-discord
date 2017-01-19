@@ -10,6 +10,12 @@ module.exports = {
 var Client = null;
 
 
+var rand = function(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 var send = function(message, toSend) {
     message.channel.sendMessage(toSend).then(function() {
         console.log("Message sent.");
@@ -31,7 +37,7 @@ module.exports.commands.push({
     description: "Give a random CS term",
     execute: function(message, parsedMessage) {
 		const csWords = ["Deterministic Finite Automata", "Turing Machine", "Polybius Square", "Checksum", "Nonce Key", "Caesar Cipher-26"];
-        send(message, "Here's the CS term I recommend for you to check out: " + csWords[Math.random(0, csWords.length) | 0]);
+        send(message, "Here's the CS term I recommend for you to check out: " + csWords[rand(0, csWords.length) | 0]);
     }
 });
 
